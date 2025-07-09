@@ -1,0 +1,87 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Campaign Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get("email");
+      const campaign = params.get("campaign");
+      if (email) {
+        document.getElementById("email").value = email;
+      }
+      if (campaign) {
+        document.getElementById("campaign_no").value = campaign;
+      }
+    };
+  </script>
+</head>
+<body>
+  <h2>Transport Quotation</h2>
+  <form action="https://formspree.io/f/your-form-id" method="POST">
+
+    <label for="email">Your Email Address:</label><br />
+    <input type="email" id="email" name="email" required readonly><br />
+
+    <label for="campaign_no">Campaign Number:</label><br />
+    <input type="text" id="campaign_no" name="campaign_no" required readonly><br />
+
+    <label for="rate">Rate (INR/MT):</label><br />
+    <input type="number" id="rate" name="rate" required><br />
+
+    <label for="vehicle_category">Vehicle Category:</label><br />
+    <input type="text" id="vehicle_category" name="vehicle_category" required><br />
+
+    <label for="vehicle_puc">Vehicle PUC:</label><br />
+    <select id="vehicle_puc" name="vehicle_puc" required>
+      <option value="">-- Select --</option>
+      <option value="Valid">Valid</option>
+      <option value="Expired">Expired</option>
+    </select><br />
+
+    <label for="vehicle_insurance">Vehicle Insurance:</label><br />
+    <select id="vehicle_insurance" name="vehicle_insurance" required>
+      <option value="">-- Select --</option>
+      <option value="Valid">Valid</option>
+      <option value="Expired">Expired</option>
+    </select><br />
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
